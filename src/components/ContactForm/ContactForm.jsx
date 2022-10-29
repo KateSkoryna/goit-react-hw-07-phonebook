@@ -6,8 +6,9 @@ import {
   FormInput,
   FormButton,
 } from './ContactForm.styled';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/operations';
+import { selectContacts } from 'redux/selectors';
 
 const ContactForm = () => {
   const initualValues = {
@@ -15,10 +16,16 @@ const ContactForm = () => {
     phone: '',
   };
 
+  const contacts = useSelector(selectContacts);
+
   const dispatch = useDispatch();
 
   const handleOnSubmit = (values, { resetForm }) => {
-    dispatch(addContact(values));
+    contacts.find(
+      contact => values.name.toLowerCase() === contact.name.toLowerCase()
+    )
+      ? alert(`${values.name} is already in contacts.`)
+      : dispatch(addContact(values));
     resetForm();
   };
 
