@@ -1,5 +1,4 @@
 import React from 'react';
-import { nanoid } from 'nanoid';
 import { Formik, Field } from 'formik';
 import {
   FormBox,
@@ -8,15 +7,12 @@ import {
   FormButton,
 } from './ContactForm.styled';
 import { useDispatch } from 'react-redux';
-import { addContact } from '../../redux/contactsSlice';
+import { addContact } from 'redux/operations';
 
 const ContactForm = () => {
-  const inputNameId = nanoid();
-  const inputTelId = nanoid();
-
   const initualValues = {
     name: '',
-    number: '',
+    phone: '',
   };
 
   const dispatch = useDispatch();
@@ -29,9 +25,8 @@ const ContactForm = () => {
   return (
     <Formik initialValues={initualValues} onSubmit={handleOnSubmit}>
       <FormBox>
-        <FormLabel htmlFor={inputNameId}>Name</FormLabel>
+        <FormLabel>Name</FormLabel>
         <Field
-          id={inputNameId}
           type="text"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -39,11 +34,10 @@ const ContactForm = () => {
           as={FormInput}
           required
         />
-        <FormLabel htmlFor={inputTelId}>Number</FormLabel>
+        <FormLabel>Number</FormLabel>
         <Field
-          id={inputTelId}
           type="tel"
-          name="number"
+          name="phone"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           as={FormInput}
