@@ -4,13 +4,19 @@ import {
   ContactListBtn,
   ContactListText,
 } from './ContactList.styled';
-import { selectContacts, selectFilterValue } from 'redux/selectors';
+import {
+  selectContacts,
+  selectFilterValue,
+  selectLoadingStatus,
+} from 'redux/selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/operations';
+import Loader from 'components/Loader';
 
 const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
+  const isLoading = useSelector(selectLoadingStatus);
   const filter = useSelector(selectFilterValue);
 
   const filterContactsOnChange = () => {
@@ -29,6 +35,7 @@ const ContactList = () => {
 
   return (
     <ContactListBox>
+      {isLoading && <Loader />}
       {sortContactsByName().map(({ id, name, phone }) => (
         <ContactListItem key={id}>
           <ContactListText>Name: {name}</ContactListText>
