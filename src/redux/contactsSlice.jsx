@@ -3,14 +3,6 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { fetchContacts, addContact, deleteContact } from './operations';
 
-const contactsInitialState = {
-  contacts: {
-    items: [],
-    isLoading: false,
-    error: null,
-  },
-};
-
 const handlePending = state => {
   state.isLoading = true;
 };
@@ -22,7 +14,13 @@ const handleRejected = (state, action) => {
 
 const contactsSlice = createSlice({
   name: 'contacts',
-  initialState: contactsInitialState,
+  initialState: {
+    contacts: {
+      items: [],
+      isLoading: false,
+      error: null,
+    },
+  },
   extraReducers: {
     [fetchContacts.pending]: handlePending,
     [fetchContacts.fulfilled](state, action) {
