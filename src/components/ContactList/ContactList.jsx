@@ -17,15 +17,14 @@ const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
   const isLoading = useSelector(selectLoadingStatus);
-  const filter = useSelector(selectFilterValue);
-
-  console.log(filter);
-  console.log(contacts);
+  const { filter } = useSelector(selectFilterValue);
 
   const filterContactsOnChange = () => {
     if (!filter) {
       return contacts;
     }
+    console.log(contacts);
+    console.log(filter);
     return contacts.filter(contact =>
       contact.name.toUpperCase().includes(filter.toUpperCase())
     );
