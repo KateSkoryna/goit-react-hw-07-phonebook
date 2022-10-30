@@ -13,22 +13,6 @@ const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContactsByName);
   const isLoading = useSelector(selectLoadingStatus);
-  // const { filter } = useSelector(selectFilterValue);
-
-  // const sortContactsByName = () => {
-  //   if (!filter) {
-  //     return [...contacts].sort((firstContact, secondContact) =>
-  //       firstContact.name.localeCompare(secondContact.name)
-  //     );
-  //   }
-  //   return [...contacts]
-  //     .sort((firstContact, secondContact) =>
-  //       firstContact.name.localeCompare(secondContact.name)
-  //     )
-  //     .filter(contact =>
-  //       contact.name.toUpperCase().includes(filter.toUpperCase())
-  //     );
-  // };
 
   return (
     <ContactListBox>
