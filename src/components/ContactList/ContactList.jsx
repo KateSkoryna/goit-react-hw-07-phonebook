@@ -19,6 +19,9 @@ const ContactList = () => {
   const isLoading = useSelector(selectLoadingStatus);
   const filter = useSelector(selectFilterValue);
 
+  console.log(filter);
+  console.log(contacts);
+
   const filterContactsOnChange = () => {
     if (!filter) {
       return contacts;
